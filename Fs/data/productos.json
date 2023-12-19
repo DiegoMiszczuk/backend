@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "title": "Samsung",
+    "photo": "foto.jpg",
+    "price": 10,
+    "stock": 20
+  },
+  {
+    "id": 2,
+    "title": "Nokia",
+    "photo": "foto.jpg",
+    "price": 10,
+    "stock": 20
+  },
+  {
+    "id": 3,
+    "title": "Motorola",
+    "photo": "foto.jpg",
+    "price": 10,
+    "stock": 20
+  },
+  {
+    "id": 4,
+    "title": "Iphone",
+    "photo": "foto.jpg",
+    "price": 10,
+    "stock": 20
+  }
+]
