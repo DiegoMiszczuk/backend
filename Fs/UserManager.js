@@ -1,30 +1,22 @@
+const fs = require("fs");
+
+const path = "fs/data/users.json";
+
 class UserManager {
   static #users = [];
 
-  constructor(data) {
-    const newUser = {
-      id:
-        UserManager.#users.length === 0
-          ? 1
-          : UserManager.#users[UserManager.#users.length - 1].id + 1,
-      name: data.name,
-      photo: data.photo,
-      email: data.email,
-    };
-
-    if (!Object.values(newUser).includes(undefined)) {
-      this.id = newUser.id;
-      this.name = newUser.name;
-      this.photo = newUser.photo;
-      this.email = newUser.email;
-      UserManager.#users.push(this);
+  constructor() {
+  }
+  init() {
+    const file = fs.existsSync(path);
+    if (file) {
+      UserManager.#users.push(JSON.parse(fs.readFileSync(path, "utf-8")));
     } else {
-      console.error('Faltan propiedades requeridas en el objeto data');
-      return null;
+      fs.writeFileSync(path, JSON.stringify([], null, 2));
     }
   }
 
-  create(data) {
+  async create(data) {
     const newUser = {
       id:
         UserManager.#users.length === 0
@@ -37,14 +29,28 @@ class UserManager {
 
     if (!Object.values(newUser).includes(undefined)) {
       UserManager.#users.push(newUser);
+      usuarios.saveUsers(UserManager.#users)
     } else {
-      console.error('Faltan propiedades requeridas en el objeto data');
+      console.error('Faltan propiedades requeridas para el usuario');
       return null;
     }
   }
 
+  //read() {
+  //  return UserManager.#users;
+  //}
   read() {
-    return UserManager.#users;
+    {
+      try {
+        if (UserManager.#users.length === 0) {
+          throw new Error("Not found users!");
+        } else {
+          return console.log(UserManager.#users);
+        }
+      } catch (error) {
+        return error.message;
+      }
+    }
   }
 
   readOne(id) {
@@ -56,13 +62,19 @@ class UserManager {
       console.log('Usuario no encontrado');
     }
   }
+  saveUsers = async (el) => {
+    try {
+      const users = JSON.stringify(el, null, 2);
+      await fs.promises.writeFile(path, users);
+    } catch (err) {
+      console.log("error al Guardar");
+    }
+  }
 }
 
-const usuarios = new UserManager({
-  name: 'juan',
-  photo: 'foto.jpg',
-  email: 'juan@juan.com',
-});
+const usuarios = new UserManager(path);
+
+
 
 usuarios.create({
   name: 'Leo',
@@ -82,6 +94,6 @@ usuarios.create({
   email: 'pablo@pablo.com',
 });
 
-usuarios.readOne(2);
+//usuarios.readOne(2);
 
-console.table(usuarios.read());
+//console.table(usuarios.read());
