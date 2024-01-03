@@ -1,7 +1,7 @@
 import fs from "fs";
 import crypto from "crypto";
 
-const path = "./fs/data/productos.json";
+const path = "./server/fs/data/productos.json";
 
 class ProductManager {
   static #products = [];
@@ -20,6 +20,7 @@ class ProductManager {
   async create(data) {
     const newProduct = {
       id: crypto.randomBytes(12).toString("hex"),
+      //id: 1,
       title: data.title,
       photo: data.photo,
       price: data.price,
@@ -31,7 +32,7 @@ class ProductManager {
 
       productos.saveProducts(ProductManager.#products);
     } else {
-      console.error("Faltan propiedades requeridas en el objeto data");
+      console.error("Required properties are missing in the data object");
       return null;
     }
   }
@@ -50,21 +51,28 @@ class ProductManager {
   }
 
   readOne(id) {
-    const buscado = ProductManager.#products.find(
-      (Element) => Element.id === id
-    );
-
-    if (buscado) {
-      console.log("Producto encontrado: ", buscado);
-    } else {
-      console.log("Producto no encontrado");
+    try {
+      console.log(ProductManager.#products);
+      const buscado = ProductManager.#products.find(
+        (Element) => Element.id === id
+      );
+      if (buscado) {
+        return buscado;
+        // console.log("Product found: ", buscado);
+      } else {
+        throw new Error("Product not found");
+        //console.log("Product not found");
+      }
+    } catch (error) {
+      console.log(error.message);
+      return error.message;
     }
   }
   async destroy(id) {
     try {
       let one = ProductManager.#products.find((element) => element.id === id);
       if (!one) {
-        throw new Error("There isn't any event with id=" + id);
+        throw new Error("There isn't any product with id=" + id);
       } else {
         ProductManager.#products = ProductManager.#products.filter(
           (each) => each.id !== id
@@ -83,8 +91,9 @@ class ProductManager {
     try {
       const produc = JSON.stringify(el, null, 2);
       await fs.promises.writeFile(path, produc);
-    } catch (err) {
-      console.log("error al Guardar");
+    } catch (error) {
+      return error.message;
+     // console.log("Error while saving");
     }
   };
 }
@@ -92,12 +101,15 @@ class ProductManager {
 const productos = new ProductManager(path);
 
 productos.create({
-  title: "Iphone",
+  title: "phone",
   photo: "foto.jpg",
   price: 10,
   stock: 20,
 });
 
-productos.readOne(4);
-productos.read();
+//productos.destroy("960ab4bd8a7cfb7a9b4bfceb");
+
+//productos.readOne(1);
+//productos.readOne(1);
+//productos.read();
 export default productos;

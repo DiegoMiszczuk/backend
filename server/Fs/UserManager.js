@@ -1,12 +1,13 @@
-const fs = require("fs");
+//const fs = require("fs");
+import fs from "fs";
+import crypto from "crypto";
 
-const path = "fs/data/users.json";
+const path = "./server/fs/data/users.json";
 
 class UserManager {
   static #users = [];
 
-  constructor() {
-  }
+  constructor() {}
   init() {
     const file = fs.existsSync(path);
     if (file) {
@@ -18,10 +19,7 @@ class UserManager {
 
   async create(data) {
     const newUser = {
-      id:
-        UserManager.#users.length === 0
-          ? 1
-          : UserManager.#users[UserManager.#users.length - 1].id + 1,
+      //id: crypto.randomBytes(12).toString("hex"),
       name: data.name,
       photo: data.photo,
       email: data.email,
@@ -29,9 +27,9 @@ class UserManager {
 
     if (!Object.values(newUser).includes(undefined)) {
       UserManager.#users.push(newUser);
-      usuarios.saveUsers(UserManager.#users)
+      usuarios.saveUsers(UserManager.#users);
     } else {
-      console.error('Faltan propiedades requeridas para el usuario');
+      console.error("The required properties for the user are missing");
       return null;
     }
   }
@@ -45,7 +43,8 @@ class UserManager {
         if (UserManager.#users.length === 0) {
           throw new Error("Not found users!");
         } else {
-          return console.log(UserManager.#users);
+          return UserManager.#users;
+          //console.log(UserManager.#users);
         }
       } catch (error) {
         return error.message;
@@ -54,45 +53,72 @@ class UserManager {
   }
 
   readOne(id) {
-    const foundUser = UserManager.#users.find((element) => element.id === id);
+    try {
+      const foundUser = UserManager.#users.find((element) => element.id === id);
+      if (foundUser) {
+        return foundUser;
+        // console.log('User found :', foundUser);
+      } else {
+        throw new Error("User not found");
+        //console.log("User not found");
+      }
+    } catch (error) {
+      console.log(error.message);
+      return error.message;
+    }
+  }
 
-    if (foundUser) {
-      console.log('Usuario encontrado:', foundUser);
-    } else {
-      console.log('Usuario no encontrado');
+  async destroy(id) {
+    try {
+      let one = UserManager.#users.find((element) => element.id === id);
+      if (!one) {
+        throw new Error("There isn't any user with id=" + id);
+      } else {
+        UserManager.#users = UserManager.#users.filter(
+          (each) => each.id !== id
+        );
+
+        usuarios.saveUsers(UserManager.#users);
+
+        console.log("deleted " + id);
+      }
+    } catch (error) {
+      console.log(error.message);
+      return error.message;
     }
   }
   saveUsers = async (el) => {
     try {
       const users = JSON.stringify(el, null, 2);
       await fs.promises.writeFile(path, users);
-    } catch (err) {
-      console.log("error al Guardar");
+    } catch (error) {
+      return error.message;
+     // console.log("Error while saving");
     }
-  }
+  };
 }
 
 const usuarios = new UserManager(path);
-
-
+export default usuarios
 
 usuarios.create({
-  name: 'Leo',
-  photo: 'foto.jpg',
-  email: 'leo@leo.com',
+  name: "Leo",
+  photo: "foto.jpg",
+  email: "leo@leo.com",
 });
 
 usuarios.create({
-  name: 'Pedro',
-  photo: 'foto.jpg',
-  email: 'pedro@pedro.com',
+  name: "Pedro",
+  photo: "foto.jpg",
+  email: "pedro@pedro.com",
 });
 
 usuarios.create({
-  name: 'Pablo',
-  photo: 'foto.jpg',
-  email: 'pablo@pablo.com',
+  name: "Pablo",
+  photo: "foto.jpg",
+  email: "pablo@pablo.com",
 });
+
 
 //usuarios.readOne(2);
 
