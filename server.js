@@ -36,10 +36,10 @@ server.get("/api/products", (req, res) => {
   }
 });
 
-server.get("/api/product/:eid", (req, res) => {
+server.get("/api/products/:pid", (req, res) => {
   try {
-    const { eid } = req.params;
-    const one = productos.readOne(eid);
+    const { pid } = req.params;
+    const one = productos.readOne(pid);
     if (one) {
       return res.status(200).json(one);
     } else {
@@ -76,10 +76,10 @@ server.get("/api/users", (req, res) => {
   }
 });
 
-server.get("/api/user/:eid", (req, res) => {
+server.get("/api/users/:uid", (req, res) => {
   try {
-    const { eid } = req.params;
-    const one = usuarios.readOne(eid);
+    const { uid } = req.params;
+    const one = usuarios.readOne(uid);
     if (one) {
       return res.status(200).json(one);
     } else {
