@@ -7,15 +7,8 @@
     "stock": 20
   },
   {
-    "id": "171c1e2aa8e63d0d5733afe3",
-    "title": "pedo",
-    "photo": "foto.jpg",
-    "price": 10,
-    "stock": 20
-  },
-  {
     "id": "dfbf19486784aec1461b8c96",
-    "title": "pedo",
+    "title": "telefono feo",
     "photo": "foto.jpg",
     "price": 10,
     "stock": 20
@@ -29,7 +22,7 @@
   },
   {
     "id": "e5dd3484190a2577bfd54db2",
-    "title": "pedo",
+    "title": "telefono roto",
     "photo": "foto.jpg",
     "price": 10,
     "stock": 20
@@ -43,7 +36,7 @@
   },
   {
     "id": "e84551ef6d862d0bddb2aa09",
-    "title": "pedo",
+    "title": "telefono roto",
     "photo": "foto.jpg",
     "price": 10,
     "stock": 20
@@ -65,6 +58,13 @@
   {
     "id": "5f4423069e8e345c82e2e7b0",
     "title": "pedo",
+    "photo": "foto.jpg",
+    "price": 10,
+    "stock": 20
+  },
+  {
+    "id": "c8529dad182e882023bdf09c",
+    "title": "samsung",
     "photo": "foto.jpg",
     "price": 10,
     "stock": 20

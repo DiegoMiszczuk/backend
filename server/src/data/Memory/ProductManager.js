@@ -6,8 +6,9 @@ class ProductManager {
       id:
         ProductManager._products.length === 0
           ? 1
-          : ProductManager._products[ProductManager._productsproducts.length - 1].id +
-            1,
+          : ProductManager._products[
+              ProductManager._productsproducts.length - 1
+            ].id + 1,
       title: data.title,
       photo: data.photo,
       price: data.price,
@@ -30,7 +31,7 @@ class ProductManager {
   createProducts(data) {
     const newProduct = {
       id:
-        ProductManager._productsproducts.length === 0
+        ProductManager._products.length === 0
           ? 1
           : ProductManager._products[ProductManager._products.length - 1].id +
             1,
@@ -58,7 +59,7 @@ class ProductManager {
           (each) => each.id !== id
         );
         const produc = JSON.stringify(ProductManager._products, null, 2);
-       fs.promises.writeFile(path, produc);
+        fs.promises.writeFile(path, produc);
         //productos.saveProducts(ProductManager.#products);
         return id;
 
@@ -71,7 +72,7 @@ class ProductManager {
   }
 
   read() {
-    return ProductManager._productsproducts;
+    return ProductManager._products;
   }
   readOne(id) {
     const buscado = ProductManager._products.find(
@@ -84,14 +85,29 @@ class ProductManager {
       console.log("Producto no encontrado");
     }
   }
+  updateProduct(id, newData) {
+    try {
+      const index = ProductManager._products.findIndex(
+        (product) => product.id === id
+      );
 
+      if (index !== -1) {
+        ProductManager._products[index] = {
+          ...ProductManager._products[index],
+          ...newData,
+        };
 
-
+        return "Producto actualizado correctamente";
+      } else {
+        return "Producto no encontrado";
+      }
+    } catch (error) {
+      return error.message;
+    }
+  }
 }
 
-
-
-const productos = new ProductManager({
+/*const productos = new ProductManager({
   title: "Samsung",
   photo: "foto.jpg",
   price: 10,
@@ -119,5 +135,9 @@ productos.createProducts({
   stock: 20,
 });
 
-productos.readOne(4);
-console.table(productos.read());
+//productos.readOne(4);
+//console.table(productos.read());
+//productos.updateProduct(1, { title: "telefono" });
+//console.table(productos.read());
+//productos.updateProduct(1, { price: 5000 });
+//console.table(productos.read());*/

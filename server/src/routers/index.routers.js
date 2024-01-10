@@ -4,5 +4,6 @@ import apiRouter from "./api/index.router.js";
 const router = Router();
 
 router.use("/api", apiRouter);
+
 //falta implementar el router de users
 export default router;

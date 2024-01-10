@@ -99,6 +99,30 @@ class ProductManager {
       return error.message;
     }
   }
+
+  async updateProduct(id, newData) {
+    try {
+      const index = ProductManager.#products.findIndex(
+        (product) => product.id === id
+      );
+
+      if (index !== -1) {
+        ProductManager.#products[index] = {
+          ...ProductManager.#products[index],
+          ...newData,
+        };
+
+        const produc = JSON.stringify(ProductManager.#products, null, 2);
+        await fs.promises.writeFile(path, produc);
+
+        return id;
+      } else {
+        return "not found";
+      }
+    } catch (error) {
+      return error.message;
+    }
+  }
 }
 /*saveProducts = async (el) => {
     try {
@@ -122,7 +146,9 @@ const productos = new ProductManager(path);
 
 //productos.destroy("6c06ff0d0b2bdccfdedaee4b");
 
+//productos.read()
+//productos.updateProduct("dfbf19486784aec1461b8c96",{ title: "telefono feo" })
 //productos.readOne(1);
 //productos.readOne(1);
-//productos.read();*/
+//productos.read();
 export default productos;

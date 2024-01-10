@@ -54,13 +54,43 @@ productsRouter.post("/", propProducts, async (req, res, next) => {
   }
 });
 
-productsRouter.put("/:pid", (req, res, next) => {});
+productsRouter.put("/:pid",propProducts, async (req, res, next) => {
+  try {
+
+    const { pid } = req.params;
+    console.log(pid)
+    const data = req.body
+    const response = await productos.updateProduct(pid, data)
+    //const index = ProductManager.#products.findIndex(product => product.id === id);
+
+    if ( response  === "not found") {
+      return res.json({
+        statusCode: 404,
+        message: response,
+      });
+      
+    } else {
+      return res.json({
+        statusCode: 200,
+        message: "updated product",
+        response,
+      });
+    }
+  } catch (error) {
+    return next(error);
+  }
+
+      
+
+
+
+});
 
 productsRouter.delete("/:pid", async (req, res) => {
   try {
     const { pid } = req.params;
     const response = await productos.destroy(pid);
-    if (typeof response === "There isn't any product with id=") {
+    if (typeof response === `There isn't any product with id= ${pid}`) {
       return res.json({
         statusCode: 404,
         message: response,
