@@ -2,7 +2,7 @@
 import fs from "fs";
 import crypto from "crypto";
 
-const path = "./server/fs/data/users.json";
+const path = "./server/src/data/fs/json/users.json";
 
 class UserManager {
   static #users = [];
@@ -19,7 +19,7 @@ class UserManager {
 
   async create(data) {
     const newUser = {
-      //id: crypto.randomBytes(12).toString("hex"),
+      id: crypto.randomBytes(12).toString("hex"),
       name: data.name,
       photo: data.photo,
       email: data.email,
@@ -101,7 +101,7 @@ class UserManager {
 const usuarios = new UserManager(path);
 export default usuarios
 
-usuarios.create({
+/*usuarios.create({
   name: "Leo",
   photo: "foto.jpg",
   email: "leo@leo.com",
@@ -117,7 +117,7 @@ usuarios.create({
   name: "Pablo",
   photo: "foto.jpg",
   email: "pablo@pablo.com",
-});
+});*/
 
 
 //usuarios.readOne(2);

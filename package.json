@@ -22,6 +22,7 @@
   "homepage": "https://github.com/DiegoMiszczuk/backend#readme",
   "dependencies": {
     "express": "^4.18.2",
+    "morgan": "^1.10.0",
     "nodemon": "^3.0.2"
   }
 }

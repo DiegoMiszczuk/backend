@@ -27,7 +27,7 @@ class ProductManager {
     }
   }
 
-  create(data) {
+  createProducts(data) {
     const newProduct = {
       id:
         ProductManager._productsproducts.length === 0
@@ -41,12 +41,35 @@ class ProductManager {
     };
 
     if (!Object.values(newProduct).includes(undefined)) {
-      ProductManager._productsproducts.push(newProduct);
+      ProductManager._products.push(newProduct);
     } else {
       console.error("Faltan propiedades requeridas en el objeto data");
       return null;
     }
   }
+
+  destroy(id) {
+    try {
+      let one = ProductManager._products.find((element) => element.id === id);
+      if (!one) {
+        throw new Error("There isn't any product with id=");
+      } else {
+        ProductManager._products = ProductManager._productsproducts.filter(
+          (each) => each.id !== id
+        );
+        const produc = JSON.stringify(ProductManager._products, null, 2);
+       fs.promises.writeFile(path, produc);
+        //productos.saveProducts(ProductManager.#products);
+        return id;
+
+        //console.log("deleted " + id);
+      }
+    } catch (error) {
+      console.log(error.message);
+      return error.message;
+    }
+  }
+
   read() {
     return ProductManager._productsproducts;
   }
@@ -61,7 +84,12 @@ class ProductManager {
       console.log("Producto no encontrado");
     }
   }
+
+
+
 }
+
+
 
 const productos = new ProductManager({
   title: "Samsung",
@@ -70,21 +98,21 @@ const productos = new ProductManager({
   stock: 20,
 });
 
-productos.create({
+productos.createProducts({
   title: "Nokia",
   photo: "foto.jpg",
   price: 10,
   stock: 20,
 });
 
-productos.create({
+productos.createProducts({
   title: "Motorola",
   photo: "foto.jpg",
   price: 10,
   stock: 20,
 });
 
-productos.create({
+productos.createProducts({
   title: "Iphone",
   photo: "foto.jpg",
   price: 10,

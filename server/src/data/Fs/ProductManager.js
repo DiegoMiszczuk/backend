@@ -1,41 +1,51 @@
 import fs from "fs";
 import crypto from "crypto";
+import { error } from "console";
 
-const path = "./server/fs/data/productos.json";
+const path = "./server/src/data/fs/json/productos.json";
 
 class ProductManager {
   static #products = [];
 
-  constructor() {}
   init() {
     const file = fs.existsSync(path);
-    console.log(file);
-    if (file) {
-      ProductManager.#products.push(JSON.parse(fs.readFileSync(path, "utf-8")));
-    } else {
+    //console.log(file);
+    if (!file) {
       fs.writeFileSync(path, JSON.stringify([], null, 2));
+    } else {
+      ProductManager.#products = JSON.parse(fs.readFileSync(path, "utf-8"));
+      //ProductManager.#products.push();
     }
   }
 
-  async create(data) {
-    const newProduct = {
-      id: crypto.randomBytes(12).toString("hex"),
-      //id: 1,
-      title: data.title,
-      photo: data.photo,
-      price: data.price,
-      stock: data.stock,
-    };
+  constructor() {
+    this.init();
+    //this.path = path;
+    //this.productos = [];
+  }
 
-    if (!Object.values(newProduct).includes(undefined)) {
+  async createProducts(data) {
+    try {
+      const newProduct = {
+        id: crypto.randomBytes(12).toString("hex"),
+        //id: 1,
+        title: data.title,
+        photo: data.photo,
+        price: data.price,
+        stock: data.stock,
+      };
+
       ProductManager.#products.push(newProduct);
 
-      productos.saveProducts(ProductManager.#products);
-    } else {
-      console.error("Required properties are missing in the data object");
-      return null;
+      //productos.saveProducts(ProductManager.#products);
+      const produc = JSON.stringify(ProductManager.#products, null, 2);
+      await fs.promises.writeFile(path, produc);
+      return newProduct.id;
+    } catch (error) {
+      return error.message;
     }
   }
+
   read() {
     {
       try {
@@ -52,7 +62,7 @@ class ProductManager {
 
   readOne(id) {
     try {
-      console.log(ProductManager.#products);
+      //console.log(ProductManager.#products);
       const buscado = ProductManager.#products.find(
         (Element) => Element.id === id
       );
@@ -72,44 +82,47 @@ class ProductManager {
     try {
       let one = ProductManager.#products.find((element) => element.id === id);
       if (!one) {
-        throw new Error("There isn't any product with id=" + id);
+        throw new Error("There isn't any product with id=");
       } else {
         ProductManager.#products = ProductManager.#products.filter(
           (each) => each.id !== id
         );
+        const produc = JSON.stringify(ProductManager.#products, null, 2);
+        await fs.promises.writeFile(path, produc);
+        //productos.saveProducts(ProductManager.#products);
+        return id;
 
-        productos.saveProducts(ProductManager.#products);
-
-        console.log("deleted " + id);
+        //console.log("deleted " + id);
       }
     } catch (error) {
       console.log(error.message);
       return error.message;
     }
   }
-  saveProducts = async (el) => {
+}
+/*saveProducts = async (el) => {
     try {
       const produc = JSON.stringify(el, null, 2);
       await fs.promises.writeFile(path, produc);
     } catch (error) {
       return error.message;
-     // console.log("Error while saving");
+      // console.log("Error while saving");
     }
   };
-}
+}*/
 
 const productos = new ProductManager(path);
 
-productos.create({
+/*productos.create({
   title: "phone",
   photo: "foto.jpg",
   price: 10,
   stock: 20,
-});
+});*/
 
-//productos.destroy("960ab4bd8a7cfb7a9b4bfceb");
+//productos.destroy("6c06ff0d0b2bdccfdedaee4b");
 
 //productos.readOne(1);
 //productos.readOne(1);
-//productos.read();
+//productos.read();*/
 export default productos;
