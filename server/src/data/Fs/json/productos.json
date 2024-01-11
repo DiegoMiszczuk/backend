@@ -1,69 +1,20 @@
 [
   {
-    "id": "80170640e42a50a5c0d13bde",
-    "title": "pedo",
+    "id": "b43b790cf25ad52709da09b8",
+    "title": "samsung",
     "photo": "foto.jpg",
     "price": 10,
     "stock": 20
   },
   {
-    "id": "dfbf19486784aec1461b8c96",
-    "title": "telefono feo",
+    "id": "486e69dc2c30f91e2e904abd",
+    "title": "samsung",
     "photo": "foto.jpg",
     "price": 10,
     "stock": 20
   },
   {
-    "id": "c46ea4a6a67e009e550f8ba0",
-    "title": "pedo",
-    "photo": "foto.jpg",
-    "price": 10,
-    "stock": 20
-  },
-  {
-    "id": "e5dd3484190a2577bfd54db2",
-    "title": "telefono roto",
-    "photo": "foto.jpg",
-    "price": 10,
-    "stock": 20
-  },
-  {
-    "id": "d9cf498aa5cd8fb705fa4fcd",
-    "title": "pedo",
-    "photo": "foto.jpg",
-    "price": 10,
-    "stock": 20
-  },
-  {
-    "id": "e84551ef6d862d0bddb2aa09",
-    "title": "telefono roto",
-    "photo": "foto.jpg",
-    "price": 10,
-    "stock": 20
-  },
-  {
-    "id": "d2a395e6be00ecb103b3f279",
-    "title": "pedo",
-    "photo": "foto.jpg",
-    "price": 10,
-    "stock": 20
-  },
-  {
-    "id": "ce872fa88d43a95bfde31bf3",
-    "title": "pedo",
-    "photo": "foto.jpg",
-    "price": 10,
-    "stock": 20
-  },
-  {
-    "id": "5f4423069e8e345c82e2e7b0",
-    "title": "pedo",
-    "photo": "foto.jpg",
-    "price": 10,
-    "stock": 20
-  },
-  {
-    "id": "c8529dad182e882023bdf09c",
+    "id": "982008afa78203e5f3bb2ca8",
     "title": "samsung",
     "photo": "foto.jpg",
     "price": 10,

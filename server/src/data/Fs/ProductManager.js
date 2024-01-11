@@ -142,7 +142,7 @@ const productos = new ProductManager(path);
   photo: "foto.jpg",
   price: 10,
   stock: 20,
-});*/
+});
 
 //productos.destroy("6c06ff0d0b2bdccfdedaee4b");
 
@@ -150,5 +150,5 @@ const productos = new ProductManager(path);
 //productos.updateProduct("dfbf19486784aec1461b8c96",{ title: "telefono feo" })
 //productos.readOne(1);
 //productos.readOne(1);
-//productos.read();
+//productos.read();*/
 export default productos;

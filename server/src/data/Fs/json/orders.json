@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "oid": "5de5f8caa7cdb31ae2c5e8bf",
+    "userId": "06a3b7dbdf6197b7c80df7fb",
+    "productId": "17b0e699a7d7cb56d64fd11d",
+    "quantity": 2
+  },
+  {
+    "oid": "0a097fa5381622375ca767b3",
+    "userId": "06a3b7dbdf6197b7c80df7fb",
+    "productId": "17b0e699a7d7cb56d64fd11d",
+    "quantity": 10000
+  }
+]

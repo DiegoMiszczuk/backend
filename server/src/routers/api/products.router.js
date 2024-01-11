@@ -4,12 +4,10 @@ import propProducts from "../../middlewares/propsProducts.mid.js";
 
 const productsRouter = Router();
 
-//definir endpoint de productos
-
 productsRouter.get("/", async (req, res, next) => {
   try {
     const allProducts = await productos.read();
-    //console.log(allProducts);
+
     if (Array.isArray(allProducts)) {
       return res.status(200).json({
         success: true,
@@ -54,21 +52,18 @@ productsRouter.post("/", propProducts, async (req, res, next) => {
   }
 });
 
-productsRouter.put("/:pid",propProducts, async (req, res, next) => {
+productsRouter.put("/:pid", propProducts, async (req, res, next) => {
   try {
-
     const { pid } = req.params;
-    console.log(pid)
-    const data = req.body
-    const response = await productos.updateProduct(pid, data)
-    //const index = ProductManager.#products.findIndex(product => product.id === id);
+    console.log(pid);
+    const data = req.body;
+    const response = await productos.updateProduct(pid, data);
 
-    if ( response  === "not found") {
+    if (response === "not found") {
       return res.json({
         statusCode: 404,
         message: response,
       });
-      
     } else {
       return res.json({
         statusCode: 200,
@@ -79,14 +74,9 @@ productsRouter.put("/:pid",propProducts, async (req, res, next) => {
   } catch (error) {
     return next(error);
   }
-
-      
-
-
-
 });
 
-productsRouter.delete("/:pid", async (req, res) => {
+productsRouter.delete("/:pid", async (req, res, next) => {
   try {
     const { pid } = req.params;
     const response = await productos.destroy(pid);
