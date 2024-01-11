@@ -3,20 +3,19 @@ import fs from "fs";
 import crypto from "crypto";
 import UserManager from "./UserManager.js";
 
-const path = "./server/src/data/fs/json/productos.json";
-const pathUser = "./server/src/data/fs/json/users.json";
-const pathOrder = "./server/src/data/fs/json/orders.json";
+const pathProducts = "./server/src/data/fs/json/productos.json";
+const pathUsers = "./server/src/data/fs/json/users.json";
+const pathOrders = "./server/src/data/fs/json/orders.json";
 
 class OrdersManager {
   static orders = [];
 
   init() {
-    const file = fs.existsSync(pathOrder);
-    console.log(file);
-    if (!file) {
-      fs.writeFileSync(pathOrder, JSON.stringify([], null, 2));
+    const fileExists = fs.existsSync(pathOrders);
+    if (!fileExists) {
+      fs.writeFileSync(pathOrders, JSON.stringify([], null, 2));
     } else {
-      OrdersManager.orders = JSON.parse(fs.readFileSync(pathOrder, "utf-8"));
+      OrdersManager.orders = JSON.parse(fs.readFileSync(pathOrders, "utf-8"));
     }
   }
 
@@ -26,41 +25,36 @@ class OrdersManager {
 
   async createOrder(uid, pid, quantity) {
     try {
-
-       uid = req.params,
-       pid =req.params,
-       quantity = req.params
-      
-      //console.log("hola");
-
-      const productsData = await fs.promises.readFile(path, "utf-8");
-      const usersData = await fs.promises.readFile(pathUser, "utf-8");
+      const productsData = await fs.promises.readFile(pathProducts, "utf-8");
+      const usersData = await fs.promises.readFile(pathUsers, "utf-8");
       const products = JSON.parse(productsData);
       const users = JSON.parse(usersData);
 
       const user = users.find((user) => user.id === uid);
-      console.log(uid)
-      
       const product = products.find((product) => product.id === pid);
-      //console.log(product)
+
       if (!user || !product) {
         throw new Error("User or product not found");
       }
+
       const newOrder = {
         oid: crypto.randomBytes(12).toString("hex"),
         userId: user.id,
         productId: product.id,
         quantity,
       };
+
       OrdersManager.orders.push(newOrder);
       const order = JSON.stringify(OrdersManager.orders, null, 2);
-      await fs.promises.writeFile(pathOrder, order);
-      console.log(oid);
-      return oid;
+      await fs.promises.writeFile(pathOrders, order);
+
+      console.log(newOrder.oid);
+      return newOrder.oid;
     } catch (error) {
       return error.message;
     }
   }
+
   read() {
     {
       try {
@@ -90,19 +84,18 @@ class OrdersManager {
 
   async destroy(oid) {
     try {
-      console.log(orders)
+      console.log(orders);
       let one = OrdersManager.orders.find((element) => element.oid === oid);
       if (!one) {
-        throw new Error("There isn't any order with id=");
+        throw new Error("there is no order with that id");
       } else {
         OrdersManager.orders = OrdersManager.orders.filter(
           (each) => each.oid !== oid
         );
         const rest = JSON.stringify(OrdersManager.orders, null, 2);
-        await fs.promises.writeFile(pathOrder, rest);
-        
+        await fs.promises.writeFile(pathOrders, rest);
+
         return "deleted " + oid;
-        //console.log("deleted " + id);
       }
     } catch (error) {
       console.log(error.message);
@@ -130,14 +123,11 @@ class OrdersManager {
       return error.message;
     }
   }
-  
 }
 
-const orders = new OrdersManager
-export default orders
+const orders = new OrdersManager();
+export default orders;
 
-//const userId = "user123"; // ID de usuario simulado
-//const productId = "product789"; // ID de producto simulado
 
 //orders.createOrder("06a3b7dbdf6197b7c80df7fb", "17b0e699a7d7cb56d64fd11d", 2);
 //orders.read()

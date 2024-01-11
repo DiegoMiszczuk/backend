@@ -1,6 +1,6 @@
 import fs from "fs";
 import crypto from "crypto";
-import { error } from "console";
+
 
 const path = "./server/src/data/fs/json/productos.json";
 
@@ -9,19 +9,18 @@ class ProductManager {
 
   init() {
     const file = fs.existsSync(path);
-    //console.log(file);
+   
     if (!file) {
       fs.writeFileSync(path, JSON.stringify([], null, 2));
     } else {
       ProductManager.#products = JSON.parse(fs.readFileSync(path, "utf-8"));
-      //ProductManager.#products.push();
+      
     }
   }
 
   constructor() {
     this.init();
-    //this.path = path;
-    //this.productos = [];
+  
   }
 
   async createProducts(data) {
@@ -82,7 +81,7 @@ class ProductManager {
     try {
       let one = ProductManager.#products.find((element) => element.id === id);
       if (!one) {
-        throw new Error("There isn't any product with id=");
+        throw new Error("There isn't any product with id=" +id);
       } else {
         ProductManager.#products = ProductManager.#products.filter(
           (each) => each.id !== id

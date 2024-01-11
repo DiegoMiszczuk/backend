@@ -9,14 +9,16 @@ productsRouter.get("/", async (req, res, next) => {
     const allProducts = await productos.read();
 
     if (Array.isArray(allProducts)) {
-      return res.status(200).json({
-        success: true,
-        response: allProducts,
+      return res.json({
+        statusCode: 200,
+        message: "found",
+        allProducts,
       });
+      
     } else {
-      return res.status(404).json({
-        success: false,
-        message: "not found products",
+      return res.json({
+        statusCode: 404,
+        message: allProducts,
       });
     }
   } catch (error) {
@@ -26,11 +28,19 @@ productsRouter.get("/", async (req, res, next) => {
 productsRouter.get("/:pid", async (req, res, next) => {
   try {
     const { pid } = req.params;
-    const one = await productos.readOne(pid);
-    if (one) {
-      return res.status(200).json(one);
+    const response = await productos.readOne(pid);
+    if (response === "Product not found") {
+     
+      return res.json({
+        statusCode: 404,
+        message: response,
+      });
     } else {
-      return res.status(404).json("not found");
+      return res.json({
+        statusCode: 200,
+        message: "found",
+        response,
+      });
     }
   } catch (error) {
     return next(error);
@@ -80,7 +90,7 @@ productsRouter.delete("/:pid", async (req, res, next) => {
   try {
     const { pid } = req.params;
     const response = await productos.destroy(pid);
-    if (typeof response === `There isn't any product with id= ${pid}`) {
+    if ( response === "There isn't any product with id=" + pid) {
       return res.json({
         statusCode: 404,
         message: response,

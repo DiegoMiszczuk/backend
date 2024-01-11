@@ -48,12 +48,6 @@
     "email": "pablo@pablo.com"
   },
   {
-    "id": "e2ecb4050d06afcbf4f683e5",
-    "name": "Leo",
-    "photo": "foto.jpg",
-    "email": "leo@leo.com"
-  },
-  {
     "id": "09ecc20353f5077eba61edf2",
     "name": "Pedro",
     "photo": "foto.jpg",
@@ -202,5 +196,11 @@
     "name": "Pablo",
     "photo": "foto.jpg",
     "email": "pablo@pablo.com"
+  },
+  {
+    "id": "4c541bd6644a7facb5200a5a",
+    "name": "super mario",
+    "photo": "foto.jpg",
+    "email": "pedro@pedro.com"
   }
 ]
