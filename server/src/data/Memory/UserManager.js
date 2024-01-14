@@ -54,6 +54,7 @@ class UserManager {
 
     if (foundUser) {
       console.log('Usuario encontrado:', foundUser);
+      return foundUser
     } else {
       console.log('Usuario no encontrado');
     }
@@ -127,15 +128,16 @@ usuarios.create({
   email: 'pablo@pablo.com',
 });
 
-usuarios.readOne(2);
+//usuarios.readOne(2);
 
-console.table(usuarios.read());
-usuarios.destroy(2)
-console.table(usuarios.read());
+//console.table(usuarios.read());
+//usuarios.destroy(2)
+//console.table(usuarios.read());
 
 usuarios.updateUser(2,{
   name: 'sebastian'
   
 })
 
-console.table(usuarios.read());
+export default usuarios
+//console.table(usuarios.read());

@@ -81,6 +81,7 @@ class ProductManager {
 
     if (buscado) {
       console.log("Producto encontrado: ", buscado);
+      return buscado
     } else {
       console.log("Producto no encontrado");
     }
@@ -107,12 +108,15 @@ class ProductManager {
   }
 }
 
-/*const productos = new ProductManager({
+
+const productos = new ProductManager({
   title: "Samsung",
   photo: "foto.jpg",
   price: 10,
   stock: 20,
 });
+
+
 
 productos.createProducts({
   title: "Nokia",
@@ -134,6 +138,7 @@ productos.createProducts({
   price: 10,
   stock: 20,
 });
+export default productos
 
 //productos.readOne(4);
 //console.table(productos.read());
