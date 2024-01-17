@@ -13,12 +13,12 @@ productsRouter.get("/", async (req, res, next) => {
   }
 });
 
-productsRouter.get("/form", (req, res, next) => {
+/*productsRouter.get("/frm", (req, res, next) => {
   try {
-    return res.render("form", {});
+    return res.render("frm", {});
   } catch (error) {
     next(error);
   }
-});
+});*/
 
 export default productsRouter;

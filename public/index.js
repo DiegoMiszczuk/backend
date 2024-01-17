@@ -1,1 +1,1 @@
-console.log("esta es la pagina principal")
+//console.log("esta es la pagina principal")

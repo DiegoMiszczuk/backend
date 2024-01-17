@@ -1,0 +1,35 @@
+<main>
+  <div class="d-flex flex-wrap justify-content-evenly">
+
+    <form>
+      <h1>Create Product</h1>
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" class="form-control" id="title" />
+      </div>
+      <div class="mb-3">
+        <label for="photo" class="form-label">photo</label>
+        <input type="text" class="form-control" id="photo" />
+
+      </div>
+      <div class="mb-3">
+        <label for="price" class="form-label">Price</label>
+        <input type="number" class="form-control" id="price" />
+      </div>
+      <div class="mb-3">
+        <label for="stock" class="form-label">Stock</label>
+        <input type="number" class="form-control" id="stock" />
+      </div>
+
+      <button
+        id="newProduct"
+        type="button"
+        class="btn btn-primary"
+      >Create</button>
+    </form>
+
+  </div>
+</main>
+<script src="/socket.io/socket.io.js"></script>
+
+<script src="real.js"></script>

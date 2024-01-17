@@ -7,7 +7,7 @@ formRouter.get("/", async (req, res, next) => {
   try {
     
     //console.log(allProducts);
-    return res.render("form", { });
+    return res.render("real", { });
   } catch (error) {
     next(error);
   }

@@ -16,8 +16,8 @@ viewsRouter.get("/", (req, res, next) => {
   }
 });
 
-viewsRouter.use("/real", productsRouter);
+viewsRouter.use("/products", productsRouter);
 viewsRouter.use("/register", userRouter)
-viewsRouter.use("/form", formRouter)
+viewsRouter.use("/real", formRouter)
 //viewsRouter.use("/products/new", productsRouter);
 export default viewsRouter;
