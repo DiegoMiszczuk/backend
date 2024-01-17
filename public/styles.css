@@ -1,0 +1,13 @@
+*{
+    margin: 0;
+    padding: 5px;
+    box-sizing: content-box;
+}
+
+h1{
+color: chartreuse;
+}
+
+body{
+    background-color: blueviolet;
+}
