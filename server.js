@@ -31,7 +31,9 @@ socketServer.on("connection", (socket) => {
   
   console.log("hola");
 
-  socket.emit("welcome", "welcome to my ecommerce")
+  //socket.emit("welcome", "welcome to my ecommerce")
+
+  socket.emit("products", productos.read())
 
   socket.on("newProduct", async (data )=>{
     try {
@@ -39,7 +41,8 @@ socketServer.on("connection", (socket) => {
       if (response === "Faltan propiedades requeridas en el objeto data") {
         response
       } else {
-        socket.emit("createdProduct", "created product!")
+        socket.emit("products", productos.read())
+       // socket.emit("createdProduct", "created product!")
         //console.log(data)
       }
      
