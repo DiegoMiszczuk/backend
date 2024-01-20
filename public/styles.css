@@ -1,6 +1,6 @@
 *{
     margin: 0;
-    padding: 5px;
+    /*padding: 5px;*/
     box-sizing: content-box;
 }
 
@@ -12,7 +12,20 @@ body{
     background-color: blueviolet;
 }
 
-.mb{
 
-margin: 5px 5px 5px 5px 
-}
+
+.navbar-brand img {
+    max-width: 50px; /* Ajusta el valor según tus necesidades */
+    height: auto;
+    margin-right: 10px; /* Añade un margen a la derecha para separar el texto y el logo */
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Esto asegura que el contenido se extienda al menos al 100% de la altura de la ventana */
+  }
+
+  main {
+    flex: 1; /* Esto hace que el contenido principal se expanda para llenar el espacio restante */
+  }

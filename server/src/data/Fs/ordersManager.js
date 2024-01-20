@@ -3,9 +3,9 @@ import fs from "fs";
 import crypto from "crypto";
 import UserManager from "./UserManager.js";
 
-const pathProducts = "./server/src/data/fs/json/productos.json";
-const pathUsers = "./server/src/data/fs/json/users.json";
-const pathOrders = "./server/src/data/fs/json/orders.json";
+const pathProducts = "./server/src/data/Fs/json/productos.json";
+const pathUsers = "./server/src/data/Fs/json/users.json";
+const pathOrders = "./server/src/data/Fs/json/orders.json";
 
 class OrdersManager {
   static orders = [];

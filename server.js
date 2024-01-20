@@ -42,7 +42,7 @@ socketServer.on("connection", (socket) => {
         response
       } else {
         socket.emit("products", productos.read())
-       // socket.emit("createdProduct", "created product!")
+        socket.emit("createdProduct", "created product!")
         //console.log(data)
       }
      

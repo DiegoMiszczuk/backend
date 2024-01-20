@@ -1,6 +1,7 @@
 import { Router } from "express";
 import productsRouter from "./products.view.js";
 import userRouter from "./user.view.js";
+import realRouter from "./real.view.js";
 import formRouter from "./form.view.js";
 
 
@@ -18,6 +19,7 @@ viewsRouter.get("/", (req, res, next) => {
 
 viewsRouter.use("/products", productsRouter);
 viewsRouter.use("/register", userRouter)
-viewsRouter.use("/real", formRouter)
+viewsRouter.use("/real", realRouter)
+viewsRouter.use("/form", formRouter)
 //viewsRouter.use("/products/new", productsRouter);
 export default viewsRouter;

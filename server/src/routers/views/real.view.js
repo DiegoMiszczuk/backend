@@ -1,16 +1,16 @@
 import { Router } from "express";
 import productos from "../../data/Fs/ProductManager.js";
 
-const formRouter = Router();
+const realRouter = Router();
 
-formRouter.get("/", async (req, res, next) => {
+realRouter.get("/", async (req, res, next) => {
   try {
     
     //console.log(allProducts);
-    return res.render("form", { });
+    return res.render("real", { });
   } catch (error) {
     next(error);
   }
 });
 
-export default formRouter
+export default realRouter

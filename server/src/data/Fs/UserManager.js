@@ -3,7 +3,7 @@ import fs from "fs";
 import crypto from "crypto";
 import { userInfo } from "os";
 
-const path = "./server/src/data/fs/json/users.json";
+const path = "./server/src/data/Fs/json/users.json";
 
 class UserManager {
   static #users = [];

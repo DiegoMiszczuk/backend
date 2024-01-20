@@ -2,7 +2,7 @@ import fs from "fs";
 import crypto from "crypto";
 
 
-const path = "./server/src/data/fs/json/productos.json";
+const path = "./server/src/data/Fs/json/productos.json";
 
 class ProductManager {
   static #products = [];
