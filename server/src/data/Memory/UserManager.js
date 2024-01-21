@@ -1,3 +1,5 @@
+
+
 class UserManager {
   static #users = [];
 
@@ -52,11 +54,55 @@ class UserManager {
 
     if (foundUser) {
       console.log('Usuario encontrado:', foundUser);
+      return foundUser
     } else {
       console.log('Usuario no encontrado');
     }
   }
+  destroy(id) {
+    try {
+      let one = UserManager.#users.find((element) => element.id === id);
+      if (!one) {
+        throw new Error("There isn't any user with id=" + id);
+      } else {
+        UserManager.#users = UserManager.#users.filter(
+          (each) => each.id !== id
+        );
+        //const user = JSON.stringify(UserManager.#users, null, 2);
+        // fs.promises.writeFile(path, user);
+        //usuarios.saveUsers(UserManager.#users);
+  
+        console.log("deleted " + id);
+      }
+    } catch (error) {
+      console.log(error.message);
+      return error.message;
+    }
+  }
+
+  updateUser(id, newData) {
+    try {
+      const index = UserManager.#users.findIndex(
+        (user) => user.id === id
+      );
+
+      if (index !== -1) {
+        UserManager.#users[index] = {
+          ...UserManager.#users[index],
+          ...newData,
+        };
+
+        return "update";
+      } else {
+        return "User not found";
+      }
+    } catch (error) {
+      return error.message;
+    }
+  }
 }
+
+
 
 const usuarios = new UserManager({
   name: 'juan',
@@ -82,6 +128,16 @@ usuarios.create({
   email: 'pablo@pablo.com',
 });
 
-usuarios.readOne(2);
+//usuarios.readOne(2);
 
-console.table(usuarios.read());
+//console.table(usuarios.read());
+//usuarios.destroy(2)
+//console.table(usuarios.read());
+
+usuarios.updateUser(2,{
+  name: 'sebastian'
+  
+})
+
+export default usuarios
+//console.table(usuarios.read());
