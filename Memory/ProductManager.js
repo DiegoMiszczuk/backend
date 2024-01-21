@@ -1,9 +1,13 @@
 class ProductManager {
-  static #products = [];
+  static _products = [];
 
   constructor(data) {
     const newProduct = {
-      id: ProductManager.#products.length === 0 ? 1 : ProductManager.#products[ProductManager.#products.length - 1].id + 1,
+      id:
+        ProductManager._products.length === 0
+          ? 1
+          : ProductManager._products[ProductManager._productsproducts.length - 1].id +
+            1,
       title: data.title,
       photo: data.photo,
       price: data.price,
@@ -16,16 +20,20 @@ class ProductManager {
       this.photo = newProduct.photo;
       this.price = newProduct.price;
       this.stock = newProduct.stock;
-      ProductManager.#products.push(this);
+      ProductManager._products.push(this);
     } else {
-      console.error('Faltan propiedades requeridas en el objeto data');
+      console.error("Faltan propiedades requeridas en el objeto data");
       return null;
     }
   }
 
   create(data) {
     const newProduct = {
-      id: ProductManager.#products.length === 0 ? 1 : ProductManager.#products[ProductManager.#products.length - 1].id + 1,
+      id:
+        ProductManager._productsproducts.length === 0
+          ? 1
+          : ProductManager._products[ProductManager._products.length - 1].id +
+            1,
       title: data.title,
       photo: data.photo,
       price: data.price,
@@ -33,25 +41,26 @@ class ProductManager {
     };
 
     if (!Object.values(newProduct).includes(undefined)) {
-      ProductManager.#products.push(newProduct);
+      ProductManager._productsproducts.push(newProduct);
     } else {
-      console.error('Faltan propiedades requeridas en el objeto data');
+      console.error("Faltan propiedades requeridas en el objeto data");
       return null;
     }
   }
   read() {
-    return ProductManager.#products;
-  }readOne(id){
-   
-     const buscado = ProductManager.#products.find(Element => Element.id === id)
+    return ProductManager._productsproducts;
+  }
+  readOne(id) {
+    const buscado = ProductManager._products.find(
+      (Element) => Element.id === id
+    );
 
-     if(buscado) {
-      console.log("Producto encontrado: " , buscado);
-         }else{
-          console.log("Producto no encontrado")
-         }
-        }
-
+    if (buscado) {
+      console.log("Producto encontrado: ", buscado);
+    } else {
+      console.log("Producto no encontrado");
+    }
+  }
 }
 
 const productos = new ProductManager({
@@ -82,6 +91,5 @@ productos.create({
   stock: 20,
 });
 
-productos.readOne(4)
+productos.readOne(4);
 console.table(productos.read());
-
