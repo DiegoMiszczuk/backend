@@ -2,7 +2,7 @@ import fs from "fs";
 import crypto from "crypto";
 
 
-const path = "./server/src/data/fs/json/productos.json";
+const path = "./server/src/data/Fs/json/productos.json";
 
 class ProductManager {
   static #products = [];
@@ -26,20 +26,25 @@ class ProductManager {
   async createProducts(data) {
     try {
       const newProduct = {
-        id: crypto.randomBytes(12).toString("hex"),
+       // id: crypto.randomBytes(12).toString("hex"),
         //id: 1,
         title: data.title,
         photo: data.photo,
         price: data.price,
         stock: data.stock,
       };
-
-      ProductManager.#products.push(newProduct);
+      if (!Object.values(newProduct).includes(undefined)) {
+        ProductManager.#products.push(newProduct);
 
       //productos.saveProducts(ProductManager.#products);
       const produc = JSON.stringify(ProductManager.#products, null, 2);
       await fs.promises.writeFile(path, produc);
       return newProduct.id;
+      } else {
+        console.error("Faltan propiedades requeridas en el objeto data");
+      }
+
+      
     } catch (error) {
       return error.message;
     }

@@ -2,22 +2,21 @@
   {
     "id": "b43b790cf25ad52709da09b8",
     "title": "samsung",
-    "photo": "foto.jpg",
+    "photo": "https://picsum.photos/200/200",
     "price": 10,
     "stock": 20
   },
   {
-    "id": "486e69dc2c30f91e2e904abd",
-    "title": "telefono roto",
-    "photo": "foto.jpg",
-    "price": 10,
-    "stock": 20
+    "title": "telefono",
+    "photo": "https://picsum.photos/200/200",
+    "price": "2",
+    "stock": "2"
   },
   {
-    "id": "11eef8f1a47695cf23669c5c",
-    "title": "samsung",
-    "photo": "foto.jpg",
-    "price": 10,
-    "stock": 20
+    "title": "telefono",
+    "photo": "https://picsum.photos/200/200",
+    "price": "2",
+    "stock": "2"
   }
+  
 ]

@@ -1,7 +1,7 @@
 import crypto from "crypto";
 
 import usuarios from "./UserManager.js";
-import productos from "./ProductManager.js";
+import productosMemory from "./ProductManager.js";
 
 class OrdersManager {
   static orders = [];
@@ -10,7 +10,7 @@ class OrdersManager {
 
   async createOrder(uid, pid, quantity) {
     try {
-      const product = productos.readOne(pid);
+      const product = productosMemory.readOne(pid);
       const user = usuarios.readOne(uid);
 
       if (!user || !product) {

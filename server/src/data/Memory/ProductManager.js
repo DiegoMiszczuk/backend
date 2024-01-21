@@ -109,7 +109,7 @@ class ProductManager {
 }
 
 
-const productos = new ProductManager({
+const productosMemory = new ProductManager({
   title: "Samsung",
   photo: "foto.jpg",
   price: 10,
@@ -118,27 +118,27 @@ const productos = new ProductManager({
 
 
 
-productos.createProducts({
+productosMemory.createProducts({
   title: "Nokia",
   photo: "foto.jpg",
   price: 10,
   stock: 20,
 });
 
-productos.createProducts({
+productosMemory.createProducts({
   title: "Motorola",
   photo: "foto.jpg",
   price: 10,
   stock: 20,
 });
 
-productos.createProducts({
+productosMemory.createProducts({
   title: "Iphone",
   photo: "foto.jpg",
   price: 10,
   stock: 20,
 });
-export default productos
+export default productosMemory
 
 //productos.readOne(4);
 //console.table(productos.read());
