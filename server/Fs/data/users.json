@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Leo",
+    "photo": "foto.jpg",
+    "email": "leo@leo.com"
+  },
+  {
+    "name": "Pedro",
+    "photo": "foto.jpg",
+    "email": "pedro@pedro.com"
+  },
+  {
+    "name": "Pablo",
+    "photo": "foto.jpg",
+    "email": "pablo@pablo.com"
+  }
+]

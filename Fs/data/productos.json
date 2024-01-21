@@ -1,35 +1,14 @@
 [
   {
-    "id": 1,
-    "title": "Nokia",
-    "photo": "foto.jpg",
-    "price": 10,
-    "stock": 20
-  },
-  {
-    "id": 2,
-    "title": "Motorola",
-    "photo": "foto.jpg",
-    "price": 10,
-    "stock": 20
-  },
-  {
-    "id": 3,
+    "id": "36ea240bdbd635b8e3dd2e33",
     "title": "Iphone",
     "photo": "foto.jpg",
     "price": 10,
     "stock": 20
   },
   {
-    "id": 4,
-    "title": "Motorola",
-    "photo": "foto.jpg",
-    "price": 10,
-    "stock": 20
-  },
-  {
-    "id": 5,
-    "title": "Iphone",
+    "id": "f67bbe5c9c9de5111c2e6433",
+    "title": "phone",
     "photo": "foto.jpg",
     "price": 10,
     "stock": 20
