@@ -4,7 +4,7 @@ import usuarios from "../../data/Fs/UserManager.js";
 
 const userRouter = Router();
 
-userRouter.use("/", (req, res, next) => {
+userRouter.get("/", (req, res, next) => {
   try {
    
     return res.render("register", {  });
@@ -13,4 +13,12 @@ userRouter.use("/", (req, res, next) => {
   }
 });
 
+
+/*userRouter.get("/chat", (req,res,next ) =>{
+  try {
+    return res.render("chat", {})
+  } catch (error) {
+    next(error)
+  }
+})*/
 export default userRouter
