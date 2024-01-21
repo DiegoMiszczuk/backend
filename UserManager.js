@@ -78,7 +78,7 @@ usuarios.create({
 
 usuarios.create({
   name: 'Pablo',
-  //photo: 'foto.jpg',
+  photo: 'foto.jpg',
   email: 'pablo@pablo.com',
 });
 

@@ -42,7 +42,7 @@ class ProductManager {
   read() {
     return ProductManager.#products;
   }readOne(id){
-   // return console.log("Producto encontrado" + ProductManager.#products.find(Element => Element.id === id))}
+   
      const buscado = ProductManager.#products.find(Element => Element.id === id)
 
      if(buscado) {
