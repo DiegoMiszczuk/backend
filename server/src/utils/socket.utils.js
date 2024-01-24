@@ -1,5 +1,7 @@
 import productos from "../data/Fs/ProductManager.js";
 import { socketServer } from "../../../server.js";
+import propsProductsUtils from "./propsProducts.utils.js";
+
 const messages = [];
 
 
@@ -20,6 +22,7 @@ export default (socket) => {
   
     socket.on("newProduct", async (data) => {
       try {
+        propsProductsUtils(data)
         const response = await productos.createProducts(data);
         if (response === "Faltan propiedades requeridas en el objeto data") {
           response;
