@@ -1,6 +1,7 @@
 import { Router } from "express";
 import productos from "../../data/Fs/ProductManager.js";
 import propProducts from "../../middlewares/propsProducts.mid.js";
+import isAdmin from "../../middlewares/isAdmin.mid.js";
 
 const productsRouter = Router();
 
@@ -46,7 +47,7 @@ productsRouter.get("/:pid", async (req, res, next) => {
     return next(error);
   }
 });
-productsRouter.post("/", propProducts, async (req, res, next) => {
+productsRouter.post("/", propProducts,isAdmin, async (req, res, next) => {
   try {
     const data = req.body;
 

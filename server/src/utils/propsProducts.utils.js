@@ -7,4 +7,4 @@ function propsProductsUtils(data) {
   }
 }
 
-export default propsProductsUtils
+export default propsProductsUtils;
